@@ -1,0 +1,26 @@
+notifications:
+  email: false
+git:
+  depth: false
+services:
+- docker
+env:
+  global:
+  - TERM=dumb
+  - DOCKER_USERNAME=daggerok
+  - DOCKER_IMAGE_NAME=jboss-eap-7.1
+  - secure: vI+rjMSFW3apl24fejLMZANrk9uo9ma5qHuI8Lg0JkvvRyG/jPtxhi+HSlRexHCF1C1a0PhSIetUqCgmcw6XKu2Cd/5iL/Y8ddddHmM57kPAYLOJXQBgG2XgxIJ8bolcwlyGJcV4xvoiCNn54ClqXrmBw01WUDaLmcvxn4r2x4WhDk25ylEjtFziZIYKCEkNpj4DDy6GaAmGZiSii0zg0PCqRoJ0sfQDP75HdgOD7KgnPfw6+K6dvfBCTDNNTYw59h5o4jmR6TzJy3ztYZtC2Jjshgz8rvrm8sHX9XXnySucY0Ah0/rdF8+Toy/dKCJ7nBDY2WoQczK5QDSZ058K5M8jk497n+nwvCUBKGcUh9jmW0W1pm4UHUR59ukM/T0vncJ4cDfZsFJmrssnlnvKi0jcRYjWidLiw3W0x9v2wMUrbsNCEH05wmu4rGHj80t+Y/yFe/txIsJ/kQLMS+cYdO4yKkiD1S9f6e1OyuOkwkrCu8X2RZu45jkK4apquLkZpE4m4mKzg2nGPQ/XfsX16VIAU5R6/E0ST+J6JBUhVldGU5n6Fj52moP3lIyYE4Wd6WDv9LjuHSbohh8vLJA+83kBHXAbR+2X7t3dQAbPNwk/6/e2TgEDnXMhdz+DQ8PkOgPi1yu8Z5e/GEjBQRrQcca085p7SBs3Un1JqkVoeHY=
+install: true
+if: tag ~= alpine$ OR tag ~= centos$ OR branch == master
+script:
+- docker system prune -af --volumes
+- docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME} .
+- echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+- |
+  if [ "${TRAVIS_BRANCH}" == "master" ]; then
+    docker tag  ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest
+    docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest
+  else
+    docker tag  ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BRANCH}
+    docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BRANCH}
+  fi
