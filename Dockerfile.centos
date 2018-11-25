@@ -23,7 +23,7 @@
 
 ############################################### USAGE ##################################################
 #                                                                                                      #
-# FROM daggerok/jboss-eap-7.1:7.1.0-centos                                                             #
+# FROM daggerok/jboss-eap-7.1:7.1.1-centos                                                             #
 #                                                                                                      #
 # # debug:                                                                                             #
 # ENV JAVA_OPTS="$JAVA_OPTS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"        #
@@ -54,7 +54,7 @@ ENV ADMIN_USER='admin'                                                          
     JDK_VERSION='jdk1.8.0_191'                                                                         \
     JBOSS_USER_HOME="/home/${JBOSS_USER}"                                                              \
     DOWNLOAD_BASE_URL="https://github.com/daggerok/${PRODUCT}/releases/download"                       \
-    JBOSS_EAP_PATCH='7.1.0'
+    JBOSS_EAP_PATCH='7.1.1'
 ENV JBOSS_HOME="${JBOSS_USER_HOME}/${PRODUCT}"                                                         \
     ARCHIVES_BASE_URL="${DOWNLOAD_BASE_URL}/archives"                                                  \
     PATCHES_BASE_URL="${DOWNLOAD_BASE_URL}/${JBOSS_EAP_PATCH}"
