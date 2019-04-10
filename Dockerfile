@@ -1,16 +1,16 @@
-FROM daggerok/jboss-eap-7.1:7.1.1-alpine
+FROM daggerok/jboss-eap-7.1:7.1.5-alpine
 LABEL MAINTAINER='Maksim Kostromin <daggerok@gmail.com>'
 ENV PRODUCT='jboss-eap-7.1' \
     JBOSS_USER='jboss'
 ENV JBOSS_USER_HOME="/home/${JBOSS_USER}" \
     DOWNLOAD_BASE_URL="https://github.com/daggerok/${PRODUCT}/releases/download" \
-    JBOSS_EAP_PATCH='7.1.5'
+    JBOSS_EAP_PATCH='7.1.6'
 ENV JBOSS_HOME="${JBOSS_USER_HOME}/${PRODUCT}" \
     PATCHES_BASE_URL="${DOWNLOAD_BASE_URL}/${JBOSS_EAP_PATCH}"
 ENV PATH="${JBOSS_HOME}/bin:/tmp:${PATH}"
 USER ${JBOSS_USER}
 RUN ( sudo apk fix --no-cache || echo 'cannot fix.' ) \
- && ( sudo apk upgrade --no-cache || echo 'cannot upgrade.' )
+ && ( sudo apk add --upgrade --no-cache sudo || echo 'cannot upgrade.' )
 WORKDIR /tmp
 ADD --chown=jboss ./install.sh .
 RUN ( standalone.sh --admin-only \
@@ -22,7 +22,7 @@ WORKDIR ${JBOSS_USER_HOME}
 
 ############################################### USAGE ##################################################
 #                                                                                                      #
-# FROM daggerok/jboss-eap-7.1:7.1.5-alpine                                                             #
+# FROM daggerok/jboss-eap-7.1:7.1.6-alpine                                                             #
 #                                                                                                      #
 # # debug:                                                                                             #
 # ENV JAVA_OPTS="$JAVA_OPTS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"        #

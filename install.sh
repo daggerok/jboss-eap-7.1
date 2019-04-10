@@ -1,3 +1,5 @@
+#!/bin/bash -xvvv
+
 #!/usr/bin/env bash
 
 function waiting_for_jboss {
