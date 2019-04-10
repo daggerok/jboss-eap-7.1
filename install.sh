@@ -1,6 +1,6 @@
-#!/bin/bash -xvvv
-
 #!/usr/bin/env bash
+
+#!/bin/bash -xvvv
 
 function waiting_for_jboss {
   while [[ $(sudo netstat -ltnp | grep 9990 | wc -l) -lt 1 ]] ; do sleep 1s ; done

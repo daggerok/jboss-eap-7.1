@@ -8,6 +8,7 @@ Patched JBoss EAP 7.1 (including __7.1.5 patch__) Docker automation build based 
 - [latest](https://github.com/daggerok/jboss-eap-7.1/blob/master/Dockerfile)
 
 - [7.1.6-alpine](https://github.com/daggerok/jboss-eap-7.1/blob/7.1.6-alpine/Dockerfile)
+- [7.1.6-centos](https://github.com/daggerok/jboss-eap-7.1/blob/7.1.6-centos/Dockerfile)
 
 - [7.1.5-alpine](https://github.com/daggerok/jboss-eap-7.1/blob/7.1.5-alpine/Dockerfile)
 - [7.1.5-centos](https://github.com/daggerok/jboss-eap-7.1/blob/7.1.5-centos/Dockerfile)
@@ -24,7 +25,7 @@ Patched JBoss EAP 7.1 (including __7.1.5 patch__) Docker automation build based 
 
 ```Dockerfile
 
-FROM daggerok/jboss-eap-7.1:7.1.5-alpine
+FROM daggerok/jboss-eap-7.1:7.1.6-alpine
 HEALTHCHECK --timeout=1s --retries=99 \
         CMD wget -q --spider http://127.0.0.1:8080/my-service/health \
          || exit 1
@@ -36,7 +37,7 @@ ADD ./target/*.war ${JBOSS_HOME}/standalone/deployments/my-service.war
 
 ```Dockerfile
 
-FROM daggerok/jboss-eap-7.1:7.1.0-centos
+FROM daggerok/jboss-eap-7.1:7.1.5-centos
 COPY ./build/libs/*.war ./target/*.war ${JBOSS_HOME}/standalone/deployments/
 
 ```
