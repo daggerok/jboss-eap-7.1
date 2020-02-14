@@ -7,6 +7,9 @@ Patched JBoss EAP 7.1 (including __7.1.6 patch__) Docker automation build based 
 
 - [latest](https://github.com/daggerok/jboss-eap-7.1/blob/master/Dockerfile)
 
+- [7.1.61-alpine](https://github.com/daggerok/jboss-eap-7.1/blob/7.1.61-alpine/Dockerfile)
+- [7.1.61-centos](https://github.com/daggerok/jboss-eap-7.1/blob/7.1.61-centos/Dockerfile)
+
 - [7.1.6-alpine](https://github.com/daggerok/jboss-eap-7.1/blob/7.1.6-alpine/Dockerfile)
 - [7.1.6-centos](https://github.com/daggerok/jboss-eap-7.1/blob/7.1.6-centos/Dockerfile)
 
