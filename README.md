@@ -1,5 +1,5 @@
 # jboss-eap-7.1 [![Build Status](https://travis-ci.org/daggerok/jboss-eap-7.1.svg?branch=master)](https://travis-ci.org/daggerok/jboss-eap-7.1)
-Patched JBoss EAP 7.1 (including __7.1.6 patch__) Docker automation build based on centos7 / alpine3.8 images
+Patched JBoss EAP 7.1 (including __7.1.6-1 patch__) Docker automation build based on centos7 / alpine3.8 images
 
 [daggerok/jboss-eap-7.1](https://hub.docker.com/r/daggerok/jboss-eap-7.1/)
 
@@ -28,7 +28,7 @@ Patched JBoss EAP 7.1 (including __7.1.6 patch__) Docker automation build based 
 
 ```Dockerfile
 
-FROM daggerok/jboss-eap-7.1:7.1.6-alpine
+FROM daggerok/jboss-eap-7.1:7.1.61-alpine
 HEALTHCHECK --timeout=1s --retries=99 \
         CMD wget -q --spider http://127.0.0.1:8080/my-service/health \
          || exit 1
@@ -40,7 +40,7 @@ ADD ./target/*.war ${JBOSS_HOME}/standalone/deployments/my-service.war
 
 ```Dockerfile
 
-FROM daggerok/jboss-eap-7.1:7.1.5-centos
+FROM daggerok/jboss-eap-7.1:7.1.6-centos
 COPY ./build/libs/*.war ./target/*.war ${JBOSS_HOME}/standalone/deployments/
 
 ```
