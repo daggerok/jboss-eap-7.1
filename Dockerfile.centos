@@ -87,7 +87,7 @@ WORKDIR ${JBOSS_USER_HOME}
 #         -q --no-cookies --no-check-certificate -O /tmp/jboss-eap-7.1.0.zip                         && \
 #    unzip -q /tmp/jboss-eap-7.1.0.zip -d ${JBOSS_USER_HOME}                                         && \
 #    add-user.sh ${ADMIN_USER} ${ADMIN_PASSWORD} --silent                                            && \
-#    echo 'JAVA_OPTS="-Djava.net.preferIPv4Stack=true -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0" \
+#    echo 'JAVA_OPTS="$JAVA_OPTS -Djava.net.preferIPv4Stack=true -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0" \
 #         ' >> ${JBOSS_HOME}/bin/standalone.conf                                                     && \
 #    ( standalone.sh --admin-only                                                                       \
 #      & ( sudo chmod +x /tmp/install.sh                                                             && \
